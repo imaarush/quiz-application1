@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
+require("dotenv").config({ path: path.resolve(__dirname, "..", ".env") });
+require("dotenv").config(); // also try default .env location
 app.use(express.json());
 const dbConfig = require("./config/dbConfig");
 
