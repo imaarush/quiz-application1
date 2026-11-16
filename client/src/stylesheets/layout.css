@@ -1,44 +1,104 @@
 .layout {
-  padding: 15px;
+  padding: 0;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar {
-  background-color: var(--primary);
-  padding: 10px;
-  border-radius: 5px;
-  height: 100%;
+  background: linear-gradient(180deg, var(--gray-900) 0%, var(--gray-800) 100%);
+  padding: 24px 12px;
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 8px 30px;
-  margin: 5px;
+  padding: 12px 16px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  gap: 15px;
+  transition: var(--transition);
+  gap: 12px;
+  color: var(--gray-400) !important;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
   color: white !important;
 }
 
-.active-menu-item{
-    border: 2px solid white;
-    border-radius: 5px;
+.menu-item i {
+  font-size: 20px !important;
+}
+
+.active-menu-item {
+  background: var(--primary) !important;
+  color: white !important;
+  border: none;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.active-menu-item:hover {
+  background: var(--primary) !important;
 }
 
 .body {
   width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .header {
-  background-color: var(--primary);
-  color: white !important;
+  background: white;
+  color: var(--gray-800) !important;
   width: 100% !important;
-  padding: 15px;
-  border-radius: 5px;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--gray-200);
   align-items: center !important;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.header h1 {
+  color: var(--gray-800) !important;
+  font-weight: 700;
+}
+
+.header span {
+  color: var(--gray-500);
+  font-size: 13px;
+}
+
+.header i {
+  color: var(--gray-500) !important;
+  transition: var(--transition);
+}
+
+.header i:hover {
+  color: var(--primary) !important;
+}
+
+.content {
+  padding: 32px;
+  overflow-y: auto;
+  flex: 1;
+  background: var(--gray-50);
 }

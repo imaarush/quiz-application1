@@ -17,25 +17,19 @@ function ProtectedRoute({ children }) {
     {
       title: "Home",
       paths: ["/", "/user/write-exam"],
-      icon: <i className="ri-home-line"></i>,
+      icon: <i className="ri-home-4-line"></i>,
       onClick: () => navigate("/"),
     },
     {
       title: "Reports",
       paths: ["/user/reports"],
-      icon: <i className="ri-bar-chart-line"></i>,
+      icon: <i className="ri-bar-chart-box-line"></i>,
       onClick: () => navigate("/user/reports"),
     },
-    // {
-    //   title: "Profile",
-    //   paths: ["/profile"],
-    //   icon: <i className="ri-user-line"></i>,
-    //   onClick: () => navigate("/profile"),
-    // },
     {
       title: "Logout",
       paths: ["/logout"],
-      icon: <i className="ri-logout-box-line"></i>,
+      icon: <i className="ri-logout-box-r-line"></i>,
       onClick: () => {
         localStorage.removeItem("token");
         navigate("/login");
@@ -47,31 +41,25 @@ function ProtectedRoute({ children }) {
     {
       title: "Home",
       paths: ["/", "/user/write-exam"],
-      icon: <i className="ri-home-line"></i>,
+      icon: <i className="ri-home-4-line"></i>,
       onClick: () => navigate("/"),
     },
     {
       title: "Exams",
       paths: ["/admin/exams", "/admin/exams/add"],
-      icon: <i className="ri-file-list-line"></i>,
+      icon: <i className="ri-file-list-3-line"></i>,
       onClick: () => navigate("/admin/exams"),
     },
     {
       title: "Reports",
       paths: ["/admin/reports"],
-      icon: <i className="ri-bar-chart-line"></i>,
+      icon: <i className="ri-bar-chart-box-line"></i>,
       onClick: () => navigate("/admin/reports"),
     },
-    // {
-    //   title: "Profile",
-    //   paths: ["/profile"],
-    //   icon: <i className="ri-user-line"></i>,
-    //   onClick: () => navigate("/profile"),
-    // },
     {
       title: "Logout",
       paths: ["/logout"],
-      icon: <i className="ri-logout-box-line"></i>,
+      icon: <i className="ri-logout-box-r-line"></i>,
       onClick: () => {
         localStorage.removeItem("token");
         navigate("/login");
@@ -133,8 +121,26 @@ function ProtectedRoute({ children }) {
 
   return (
     <div className="layout">
-      <div className="flex gap-2 w-full h-full h-100">
+      <div className="flex w-full h-full h-100">
         <div className="sidebar">
+          {/* Logo */}
+          <div style={{
+            padding: "0 16px 24px",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            marginBottom: 16
+          }}>
+            <div className="flex items-center gap-1">
+              <i className="ri-questionnaire-line" style={{
+                fontSize: 24, color: "var(--primary-light)"
+              }}></i>
+              {!collapsed && (
+                <span style={{
+                  color: "white", fontWeight: 700, fontSize: 18
+                }}>QuizMaster</span>
+              )}
+            </div>
+          </div>
+
           <div className="menu">
             {menu.map((item, index) => {
               return (
@@ -154,24 +160,42 @@ function ProtectedRoute({ children }) {
         </div>
         <div className="body">
           <div className="header flex justify-between">
-            {!collapsed && (
-              <i
-                className="ri-close-line"
-                onClick={() => setCollapsed(true)}
-              ></i>
-            )}
-            {collapsed && (
-              <i
-                className="ri-menu-line"
-                onClick={() => setCollapsed(false)}
-              ></i>
-            )}
-            <h1 className="text-2xl text-white">QUIZ Application</h1>
-            <div>
-              <div className="flex gap-1 items-center">
-                <h1 className="text-md text-white">{user?.name}</h1>
+            <div className="flex items-center gap-1">
+              {!collapsed && (
+                <i
+                  className="ri-menu-fold-line"
+                  onClick={() => setCollapsed(true)}
+                ></i>
+              )}
+              {collapsed && (
+                <i
+                  className="ri-menu-unfold-line"
+                  onClick={() => setCollapsed(false)}
+                ></i>
+              )}
+            </div>
+            <div className="flex items-center gap-1">
+              <div style={{
+                width: 36, height: 36, borderRadius: "50%",
+                background: "linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "white", fontWeight: 700, fontSize: 14
+              }}>
+                {user?.name?.charAt(0)?.toUpperCase()}
               </div>
-              <span>Role : {user?.isAdmin ? "Admin" : "User"}</span>
+              <div>
+                <h1 className="text-sm" style={{ fontWeight: 600, color: "var(--gray-800)" }}>{user?.name}</h1>
+                <span style={{
+                  fontSize: 12,
+                  padding: "2px 8px",
+                  borderRadius: 20,
+                  background: user?.isAdmin ? "var(--primary-light)" : "var(--gray-100)",
+                  color: user?.isAdmin ? "var(--primary)" : "var(--gray-600)",
+                  fontWeight: 600
+                }}>
+                  {user?.isAdmin ? "Admin" : "User"}
+                </span>
+              </div>
             </div>
           </div>
           <div className="content">{children}</div>

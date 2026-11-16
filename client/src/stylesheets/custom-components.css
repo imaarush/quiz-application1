@@ -1,20 +1,41 @@
 .card {
-  box-shadow: 0 0 1px gray;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .card-lg {
-  box-shadow: 0 0 2px rgb(128, 128, 128);
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.card-lg:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: var(--primary-light);
 }
 
 .divider {
-  border-bottom: 1px solid rgb(182, 182, 182);
-  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--gray-200);
+  margin: 16px 0;
 }
 
 .loader-parent {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.638);
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -22,32 +43,51 @@
 }
 
 .loader {
-  height: 80px;
-  width: 80px;
-  border: 5px solid #f3f3f3;
-  border-left-color: transparent;
+  height: 48px;
+  width: 48px;
+  border: 4px solid var(--primary-light);
+  border-left-color: var(--primary);
   border-radius: 50%;
-  animation: loader 1s linear infinite;
+  animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .option {
-  box-shadow: rgba(0, 0, 0, 0.638) 0px 0px 1.5px;
-  padding: 10px;
-  border-radius: 2px;
+  background: white;
+  border: 2px solid var(--gray-200);
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.option:hover {
+  border-color: var(--primary-light);
+  background: var(--gray-50);
 }
 
 .selected-option {
-  box-shadow: rgba(0, 0, 0, 0.638) 0px 0px 1px;
-  padding: 10px;
-  border-radius: 2px;
+  background: var(--primary-light);
   border: 2px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.selected-option h1 {
+  color: var(--primary-dark);
 }
 
 .result {
-  box-shadow: rgba(75, 75, 75, 0.638) 0px 0px 2px;
-  padding: 30px;
+  padding: 40px;
   color: white !important;
-  border-radius: 5px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 .lottie-animation {
@@ -55,22 +95,85 @@
 }
 
 .timer {
-  background-color: #894114;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white !important;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
-  width: 80px;
+  height: 72px;
+  width: 72px;
   border-radius: 50%;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+  animation: pulse-timer 2s ease-in-out infinite;
 }
 
-@keyframes loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+@keyframes pulse-timer {
+  0%, 100% { box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6); }
+}
+
+/* Ant Design Table overrides */
+.ant-table {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+
+.ant-table-thead > tr > th {
+  background: var(--gray-50) !important;
+  font-weight: 600 !important;
+  color: var(--gray-700) !important;
+  border-bottom: 2px solid var(--gray-200) !important;
+  padding: 14px 16px !important;
+}
+
+.ant-table-tbody > tr > td {
+  padding: 14px 16px !important;
+  color: var(--gray-600) !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: var(--gray-50) !important;
+}
+
+.ant-table-wrapper {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+
+/* Ant Design Modal overrides */
+.ant-modal-content {
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+}
+
+.ant-modal-header {
+  border-bottom: 1px solid var(--gray-200) !important;
+  padding: 20px 24px !important;
+}
+
+.ant-modal-title {
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+}
+
+.ant-modal-body {
+  padding: 24px !important;
+}
+
+/* Ant Design Tabs overrides */
+.ant-tabs-tab {
+  font-weight: 500 !important;
+  padding: 10px 20px !important;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary) !important;
+}
+
+.ant-tabs-ink-bar {
+  background: var(--primary) !important;
 }
